@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lighthouse-auth
+  labels:
+    name: lighthouse-auth
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: lighthouse-auth
+  type: LoadBalancer

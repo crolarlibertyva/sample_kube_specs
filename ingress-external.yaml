@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: lighthouse-auth-external-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /auth
+spec:
+  rules:
+  - host: green.172.18.0.3.xip.io
+    http:
+      paths:
+      - path: /auth
+        backend:
+          serviceName: lighthouse-auth
+          servicePort: 8080
