@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   name: lighthouse-auth-external-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /auth
+    traefik.ingress.kubernetes.io/rewrite-target: /auth
 spec:
   rules:
-  - host: green.172.18.0.3.xip.io
+  - host: external.172.21.0.3.xip.io
     http:
       paths:
       - path: /auth

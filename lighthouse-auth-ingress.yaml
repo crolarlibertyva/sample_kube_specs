@@ -1,0 +1,34 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: auth-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /auth/$1
+spec:
+  rules:
+    - host: health.172.21.0.3.xip.io
+    - http:
+        paths:
+          - path:  /auth/(.*)
+            backend:
+              serviceName: lighthouse-auth
+              servicePort: 8080
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: auth-actuator-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: health.172.21.0.3.xip.io
+    - http:
+        paths:
+          - path: /auth-internal/(.*)
+            backend:
+              serviceName: lighthouse-auth
+              servicePort: 8080

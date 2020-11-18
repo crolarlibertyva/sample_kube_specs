@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: lighthouse-auth-internal-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: blue.172.18.0.3.xip.io
+  - host: internal.172.21.0.3.xip.io
     http:
       paths:
-      - path: /actuator
+      - path: /internal
         backend:
           serviceName: lighthouse-auth
           servicePort: 8080
